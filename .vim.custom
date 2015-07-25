@@ -1,0 +1,12 @@
+if !exists("g:spec_command")
+    let g:spec_command = "ruby"
+endif
+
+function! SpecRun()
+  if @% =~? '.*_spec\.rb'
+    silent !clear
+    execute "!" . g:spec_command . " " . bufname("%")
+  endif
+endfunction
+
+nnoremap <leader>r :call SpecRun()<cr>
